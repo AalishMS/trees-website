@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees - Nature's Gift</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <span class="logo-icon">🌳</span>
+        </div>
+        <ul class="nav-items">
+            <li><a href="#home" class="nav-link active" data-page="home">
+                <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </a></li>
+            <li><a href="#explore" class="nav-link" data-page="explore">
+                <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </a></li>
+            <li><a href="#gallery" class="nav-link" data-page="gallery">
+                <svg viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </a></li>
+            <li><a href="#about" class="nav-link" data-page="about">
+                <svg viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </a></li>
+            <li><a href="#contact" class="nav-link" data-page="contact">
+                <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Discover the<br><span class="highlight">Wonder of Trees</span></h1>
+                    <p class="hero-subtitle">Explore the majestic world of arboreal wonders</p>
+                    <a href="#explore" class="cta-button">Start Exploring</a>
+                </div>
+                <div class="hero-tree">
+                    <div class="tree-silhouette"></div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <section id="explore" class="page">
+            <div class="page-header">
+                <h2>Explore Tree Types</h2>
+                <p>Discover the diversity of trees around the world</p>
+            </div>
+            <div class="tree-cards">
+                <div class="tree-card" data-type="deciduous">
+                    <div class="card-icon">🌿</div>
+                    <h3>Deciduous</h3>
+                    <p>Trees that lose their leaves seasonally</p>
+                </div>
+                <div class="tree-card" data-type="coniferous">
+                    <div class="card-icon">🌲</div>
+                    <h3>Coniferous</h3>
+                    <p>Evergreen trees with needle-like leaves</p>
+                </div>
+                <div class="tree-card" data-type="tropical">
+                    <div class="card-icon">🌴</div>
+                    <h3>Tropical</h3>
+                    <p>Lush trees from rainforests</p>
+                </div>
+                <div class="tree-card" data-type="fruit">
+                    <div class="card-icon">🍎</div>
+                    <h3>Fruit Trees</h3>
+                    <p>Trees that bear delicious fruits</p>
+                </div>
+                <div class="tree-card" data-type="palm">
+                    <div class="card-icon">🌴</div>
+                    <h3>Palm Trees</h3>
+                    <p>Iconic trees of warm climates</p>
+                </div>
+                <div class="tree-card" data-type="ancient">
+                    <div class="card-icon">🌳</div>
+                    <h3>Ancient Trees</h3>
+                    <p>Centuries-old majestic giants</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="page">
+            <div class="page-header">
+                <h2>Gallery</h2>
+                <p>Beautiful moments captured in nature</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800">
+                    <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400" alt="Forest path">
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800">
+                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400" alt="Green forest">
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1511497584788-876760111969?w=800">
+                    <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=400" alt="Tree trunk">
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Sunlight through trees">
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800">
+                    <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400" alt="Forest">
+                </div>
+                <div class="gallery-item" data-src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=800">
+                    <img src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=400" alt="Trees">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page">
+            <div class="page-header">
+                <h2>About Trees</h2>
+                <p>The vital role of trees in our ecosystem</p>
+            </div>
+            <div class="about-content">
+                <div class="stat-card">
+                    <span class="stat-number" data-target="3000000">0</span>
+                    <span class="stat-label">Trees Planted Daily</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="25">0</span>
+                    <span class="stat-label">% of Earth's Land</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-label">Billion Hectares</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="400">0</span>
+                    <span class="stat-label">Tree Species</span>
+                </div>
+            </div>
+            <div class="about-text">
+                <p>Trees are essential to life on Earth. They produce oxygen, absorb carbon dioxide, provide habitat for wildlife, and contribute to soil health. Forests cover about 31% of the Earth's land area.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="page">
+            <div class="page-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us</p>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="5" required placeholder=" "></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Gallery image">
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
