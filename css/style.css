@@ -251,7 +251,24 @@ body {
     align-items: center;
     gap: 10px;
     color: var(--text-secondary);
-    animation: bounce 2s infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.scroll-indicator:hover {
+    color: var(--primary-green);
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.scroll-indicator span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.scroll-indicator:hover span {
+    color: var(--primary-green);
 }
 
 @keyframes bounce {

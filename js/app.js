@@ -2,6 +2,9 @@ class App {
     constructor() {
         this.router = new Router();
         this.lightbox = document.getElementById('lightbox');
+        this.pages = ['home', 'explore', 'gallery', 'about', 'contact'];
+        this.currentPageIndex = 0;
+        this.isScrolling = false;
         this.init();
     }
 
@@ -12,6 +15,62 @@ class App {
         this.initRevealOnScroll();
         this.initExploreFilters();
         this.initTreeCardClicks();
+        this.initScrollNavigation();
+    }
+
+    initScrollNavigation() {
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                this.scrollToNextPage();
+            });
+        }
+
+        window.addEventListener('wheel', (e) => {
+            if (this.isScrolling) return;
+            
+            if (e.deltaY > 0) {
+                this.scrollToNextPage();
+            } else if (e.deltaY < 0) {
+                this.scrollToPrevPage();
+            }
+        }, { passive: true });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                e.preventDefault();
+                this.scrollToNextPage();
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                this.scrollToPrevPage();
+            }
+        });
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1) || 'home';
+            this.currentPageIndex = this.pages.indexOf(hash);
+        });
+    }
+
+    scrollToNextPage() {
+        if (this.currentPageIndex < this.pages.length - 1) {
+            this.isScrolling = true;
+            this.currentPageIndex++;
+            const pageId = this.pages[this.currentPageIndex];
+            document.getElementById(pageId).scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => this.isScrolling = false, 1000);
+        }
+    }
+
+    scrollToPrevPage() {
+        if (this.currentPageIndex > 0) {
+            this.isScrolling = true;
+            this.currentPageIndex--;
+            const pageId = this.pages[this.currentPageIndex];
+            document.getElementById(pageId).scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => this.isScrolling = false, 1000);
+        }
     }
 
     initScrollAnimations() {
