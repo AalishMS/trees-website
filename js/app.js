@@ -10,6 +10,8 @@ class App {
         this.initGallery();
         this.initContactForm();
         this.initRevealOnScroll();
+        this.initExploreFilters();
+        this.initTreeCardClicks();
     }
 
     initScrollAnimations() {
@@ -56,6 +58,91 @@ class App {
     closeLightbox() {
         this.lightbox.classList.remove('active');
         document.body.style.overflow = '';
+    }
+
+    initExploreFilters() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const treeCards = document.querySelectorAll('.tree-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                treeCards.forEach(card => {
+                    const type = card.getAttribute('data-type');
+                    if (filter === 'all' || type === filter) {
+                        card.classList.remove('hidden');
+                        card.style.animation = 'none';
+                        card.offsetHeight;
+                        card.style.animation = 'cardReveal 0.5s ease forwards';
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    }
+
+    initTreeCardClicks() {
+        const treeCards = document.querySelectorAll('.tree-card');
+
+        treeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const imageSrc = card.getAttribute('data-image');
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('p').textContent;
+                const location = card.querySelector('.card-location').textContent;
+                
+                this.showTreeDetail(title, description, location, imageSrc);
+            });
+        });
+    }
+
+    showTreeDetail(title, description, location, imageSrc) {
+        let modal = document.getElementById('tree-modal');
+        
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'tree-modal';
+            modal.className = 'lightbox';
+            modal.innerHTML = `
+                <span class="lightbox-close" id="modal-close">&times;</span>
+                <div class="tree-detail-content">
+                    <div class="tree-detail-image">
+                        <img src="" alt="${title}">
+                    </div>
+                    <div class="tree-detail-info">
+                        <h2></h2>
+                        <p class="tree-detail-desc"></p>
+                        <span class="tree-detail-location"></span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal || e.target.classList.contains('lightbox-close')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        const modalImg = modal.querySelector('.tree-detail-image img');
+        const modalTitle = modal.querySelector('.tree-detail-info h2');
+        const modalDesc = modal.querySelector('.tree-detail-desc');
+        const modalLocation = modal.querySelector('.tree-detail-location');
+
+        modalImg.src = imageSrc;
+        modalTitle.textContent = title;
+        modalDesc.textContent = description;
+        modalLocation.textContent = location;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
     initContactForm() {

@@ -287,9 +287,43 @@ body {
     color: var(--text-secondary);
 }
 
+.explore-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--primary-green);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary-green), var(--accent));
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 20px rgba(52, 199, 89, 0.4);
+}
+
 .tree-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     padding: 20px;
 }
@@ -300,55 +334,110 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
-    padding: 40px 30px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
     overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    min-height: 320px;
 }
 
-.tree-card::before {
-    content: '';
+.tree-card.hidden {
+    display: none;
+}
+
+.tree-card .card-image {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 55%;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+}
+
+.tree-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent));
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(13, 31, 13, 0.95), transparent);
+    pointer-events: none;
 }
 
 .tree-card:hover {
-    transform: translateY(-10px) rotateX(5deg);
-    box-shadow: 0 20px 60px rgba(52, 199, 89, 0.2);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 80px rgba(52, 199, 89, 0.3);
     border-color: var(--primary-green);
 }
 
-.tree-card:hover::before {
-    transform: scaleX(1);
+.tree-card:hover .card-image {
+    transform: scale(1.15);
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    text-align: center;
+    margin-top: 45%;
 }
 
 .card-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    margin-bottom: 12px;
     transition: transform 0.4s ease;
+    display: inline-block;
 }
 
 .tree-card:hover .card-icon {
-    transform: scale(1.2) rotate(10deg);
+    transform: scale(1.3) rotate(10deg);
+    animation: iconBounce 0.6s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1.3) rotate(10deg); }
+    50% { transform: scale(1.5) rotate(-10deg); }
 }
 
 .tree-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
     color: var(--text-primary);
+    font-weight: 600;
 }
 
 .tree-card p {
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.card-location {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(52, 199, 89, 0.2);
+    border: 1px solid var(--primary-green);
+    border-radius: 20px;
+    color: var(--primary-green);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.explore-cta {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-secondary);
+}
+
+.explore-cta p {
+    font-size: 1rem;
+    opacity: 0.7;
 }
 
 .gallery-grid {
@@ -578,6 +667,71 @@ body {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tree-detail-content {
+    display: flex;
+    max-width: 900px;
+    width: 90%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.tree-detail-image {
+    flex: 1;
+    min-height: 400px;
+}
+
+.tree-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tree-detail-info {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tree-detail-info h2 {
+rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--text-primary), var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tree-detail-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.tree-detail-location {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary-green), var(--accent));
+    border-radius: 30px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-self: flex-start;
 }
 
 @media (max-width: 768px) {
